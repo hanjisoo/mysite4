@@ -83,6 +83,10 @@ public class UserController {
 		
 		userService.updateUser(userVo);
 		
+		
+		//정보수정했을때 헤더 이름바껴야지 
+		authUser.setName(userVo.getName());
+		
 		return "redirect:/main";
 	}
 }
