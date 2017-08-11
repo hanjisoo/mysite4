@@ -16,18 +16,14 @@ import com.mysite.vo.UserVo;
 @Controller
 @RequestMapping("/user")//이거 쓰면 중복안하고 user빼줄수 있음
 public class UserController {
-
 	
 	@Autowired	//서비스랑 연결
 	private UserService userService;
-	
-	
-	
+
 	@RequestMapping(value="/joinform", method=RequestMethod.GET)//주소갖고 있음 웹에서 쓰겠다.
 	public String joinform() {
 		return "user/joinform";//spring-servlet에서 관리
 	}//화면띄움
-	
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(@ModelAttribute UserVo userVo) {
@@ -44,10 +40,10 @@ public class UserController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@RequestParam("email")String email,
 						@RequestParam("password")String password,
-						HttpSession session) {//<-세션에 돌아온거 널어줘야되니깐 만들어줌
+						HttpSession session) {//<-세션에 돌아온거 넣어줘야되니깐 만들어줌
 		
 		UserVo authUser=userService.getUser(email,password);//이런사람있으면 가져와
-			  //돌아올떄 여기에 담길꺼랃구
+			  //돌아올떄 여기에 담길꺼야
 		if(authUser != null) {
 			session.setAttribute("authUser", authUser);
 			return "redirect:/main";
@@ -72,7 +68,7 @@ public class UserController {
 		//돌아올떄
 		UserVo userVo=userService.getUser(no);
 		model.addAttribute("userVo",userVo);
-		System.out.println("브이오"+userVo);
+		System.out.println();
 		return "user/modifyform";
 	}
 	

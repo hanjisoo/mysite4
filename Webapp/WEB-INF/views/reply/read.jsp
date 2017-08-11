@@ -27,7 +27,7 @@
 					</tr>
 					<tr>
 						<td class="label">제목</td>
-						<td>${replyboardVo.title }</td>
+						<td>${replyVo.title }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
@@ -44,6 +44,7 @@
 					<c:if test="${authUser.no==replyVo.userNo }">
 					<a href="${pageContext.request.contextPath }/reply/modifyform?no=${replyVo.no }">글수정</a>
 					</c:if>
+					<a href="${pageContext.request.contextPath }/reply/replyform?no=${replyVo.no }">댓글</a>
 				</div>
 			</div>
 		</div>

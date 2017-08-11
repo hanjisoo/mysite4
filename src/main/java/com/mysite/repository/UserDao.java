@@ -21,7 +21,7 @@ public class UserDao {
 	}
 	
 	public UserVo getUser(String email, String password) {
-		Map<String, Object>userMap=new HashMap<String, Object>();
+		Map<String, Object> userMap=new HashMap<String, Object>();
 		userMap.put("email",email);//xml에 있는 키값(#{email})을 가져와서 담아
 		userMap.put("password",password);
 		UserVo userVo= sqlSession.selectOne("user.selectUserByEmailPw",userMap);
