@@ -21,11 +21,19 @@
 	]]>
 	</select>
 	
+	<select id="updateHit" parameterType="int" resultType="com.mysite.vo.BoardVo">
+	<![CDATA[
+		update board
+		set hit=hit+1
+		where no=#{no}
+	]]>
+	</select>
+	
 	<insert id="insert" parameterType="com.mysite.vo.BoardVo">
 	<![CDATA[
 		insert into board 
 		values(seq_board_no.nextval,
-				#{title},#{content},0,sysdate,#{userNo})
+				#{title},#{content},#{hit},sysdate,#{userNo})
 	]]>
 	</insert>
 	
@@ -35,7 +43,7 @@
 		and user_no=#{userNo}
 	</delete>
 	
-	<select id="selectBoard" resultType="com.mysite.vo.BoardVo">
+	<select id="selectBoard"  parameterType="int" resultType="com.mysite.vo.BoardVo">
 	<![CDATA[
 		select no,title,content,user_no userNo 
 		from  board 

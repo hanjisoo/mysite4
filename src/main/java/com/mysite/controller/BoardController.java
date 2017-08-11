@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.service.BoardService;
 import com.mysite.vo.BoardVo;
@@ -34,7 +35,9 @@ public class BoardController {
 	@RequestMapping(value="/board/read/{no}")
 	public String read(Model model, @PathVariable("no") int no) {
 		
-		BoardVo boardVo =boardService.getRead(no);
+		BoardVo boardVo = boardService.getRead(no);
+		/*boardService.updateHit(no);*/
+		
 		/*System.out.println(boardVo.toString());*/
 		model.addAttribute("boardVo", boardVo);
 		return "board/read";
@@ -68,28 +71,26 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/modifyform")
-	public String modifyform(@ModelAttribute BoardVo no, Model model) {
+	public String modifyform(@RequestParam int no, Model model) {
 
-		boardService.getUser(no);
-	
-		model.addAttribute("boardNo", no);
 		
-		System.out.println("보드"+no);
+		BoardVo boardVo=boardService.getUser(no);
+		System.out.println(boardVo);
+		model.addAttribute("boardVo", boardVo);
+		
 		return"board/modifyform";
 	}
 
 	
 	
-	
-	
-	
-	
 	@RequestMapping("/board/modify")
-	public String modify(@ModelAttribute BoardVo boardVo,HttpSession session){
-		UserVo authUser=(UserVo)session.getAttribute("authUser");
+	public String modify(@ModelAttribute BoardVo boardVo){
+		/*,HttpSession session
+		 * UserVo authUser=(UserVo)session.getAttribute("authUser");
 		int no=authUser.getNo();
 		boardVo.setNo(no);
-		
+		*/
+		System.out.println(boardVo);
 		boardService.update(boardVo);
 		return "redirect:/board/list";
 	}

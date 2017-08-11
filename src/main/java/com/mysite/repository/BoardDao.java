@@ -23,6 +23,10 @@ public class BoardDao {
 		return sqlSession.selectOne("board.selectRead", no);
 	}
 	
+	public int updateHit(int no) {
+		return sqlSession.update("board.updateHit", no);
+	}
+	
 	public int write( BoardVo boardVo) {
 		return sqlSession.insert("board.insert", boardVo);
 	}
@@ -31,7 +35,7 @@ public class BoardDao {
 		return sqlSession.delete("board.delete", vo);
 	}
 	
-	public BoardVo getUser(BoardVo no) {
+	public BoardVo getUser(int no) {
 		return sqlSession.selectOne("board.selectBoard", no);
 		
 	}
