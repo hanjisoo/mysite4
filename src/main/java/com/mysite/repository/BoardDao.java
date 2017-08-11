@@ -35,7 +35,7 @@ public class BoardDao {
 		return sqlSession.delete("board.delete", vo);
 	}
 	
-	public BoardVo getUser(int no) {
+	public BoardVo getBoard(int no) {
 		return sqlSession.selectOne("board.selectBoard", no);
 		
 	}

@@ -32,9 +32,9 @@ public class BoardController {
 		return "board/list";
 	}
 	
+	
 	@RequestMapping(value="/board/read/{no}")
-	public String read(Model model, @PathVariable("no") int no) {
-		
+	public String read(Model model,@PathVariable("no") int no) {
 		BoardVo boardVo = boardService.getRead(no);
 		/*boardService.updateHit(no);*/
 		
@@ -43,10 +43,12 @@ public class BoardController {
 		return "board/read";
 	}
 	
+	
 	@RequestMapping("/board/writeform")
 	public String writeform() {
 		return "board/writeform";
 	}
+	
 	
 	@RequestMapping("/board/write")
 	public String write(@ModelAttribute BoardVo boardVo, HttpSession session) {//userNo까지 보내줘야함
@@ -60,6 +62,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	
 	@RequestMapping(value="/board/delete", method=RequestMethod.GET)
 	public String delete(HttpSession session, @ModelAttribute BoardVo vo) {
 		UserVo authUser=(UserVo)session.getAttribute("authUser");
@@ -70,11 +73,10 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	
 	@RequestMapping("/board/modifyform")
 	public String modifyform(@RequestParam int no, Model model) {
-
-		
-		BoardVo boardVo=boardService.getUser(no);
+		BoardVo boardVo=boardService.getBoard(no);
 		System.out.println(boardVo);
 		model.addAttribute("boardVo", boardVo);
 		
@@ -82,14 +84,8 @@ public class BoardController {
 	}
 
 	
-	
 	@RequestMapping("/board/modify")
 	public String modify(@ModelAttribute BoardVo boardVo){
-		/*,HttpSession session
-		 * UserVo authUser=(UserVo)session.getAttribute("authUser");
-		int no=authUser.getNo();
-		boardVo.setNo(no);
-		*/
 		System.out.println(boardVo);
 		boardService.update(boardVo);
 		return "redirect:/board/list";

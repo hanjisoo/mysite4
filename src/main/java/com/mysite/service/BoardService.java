@@ -19,7 +19,6 @@ public class BoardService {
 	}
 	
 	public BoardVo getRead(int no) {
-		
 		//글 불러와
 		BoardVo boardVo = boardDao.getRead(no);
 		
@@ -43,8 +42,8 @@ public class BoardService {
 		return boardDao.delete(vo);
 	}
 	
-	public BoardVo getUser(int no) {
-		return boardDao.getUser(no);
+	public BoardVo getBoard(int no) {
+		return boardDao.getBoard(no);
 	}
 	
 	public int update(BoardVo boardVo) {
