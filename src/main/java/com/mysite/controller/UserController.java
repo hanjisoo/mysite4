@@ -72,6 +72,7 @@ public class UserController {
 		//돌아올떄
 		UserVo userVo=userService.getUser(no);
 		model.addAttribute("userVo",userVo);
+		System.out.println("브이오"+userVo);
 		return "user/modifyform";
 	}
 	
