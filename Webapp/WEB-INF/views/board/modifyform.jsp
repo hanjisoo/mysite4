@@ -34,8 +34,7 @@
 							</td>
 						</tr>
 					</table>
-					
-					<input type="text" value="${boardNo.no}">
+					<input type="text" name ="no" value="${boardVo.no}"> 
 					<div class="bottom">
 						<a href="${pageContext.request.contextPath }/board/list">취소</a>
 						<input type="submit" value="수정">
