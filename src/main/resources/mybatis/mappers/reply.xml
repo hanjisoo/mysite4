@@ -3,25 +3,25 @@
 
 <mapper namespace="reply">
  
- <select id="getList" resultType="com.mysite.vo.ReplyboardVo">
- <![CDATA[
- 	select r.no, title, content, hit, reg_date regDate, user_no userNo, name
-	from replyboard r,users u
-	where r.user_no=u.no
-	order by no desc
- ]]>
- </select>
+	 <select id="getList" resultType="com.mysite.vo.ReplyboardVo">
+	 <![CDATA[
+	 	select r.no, title, content, hit, reg_date regDate, user_no userNo, group_no groupNo, order_no orderNo, depth, name
+		from replyboard r,users u
+		where r.user_no=u.no
+		order by r.group_no desc,r.order_no asc
+	 ]]>
+	 </select>
  
-<insert id="insert" parameterType="com.mysite.vo.ReplyboardVo">
-<![CDATA[
-	insert into replyboard
-	values(seq_replyboard_no.nextval
-        	,#{title}, #{content},#{hit}, sysdate,#{userNo}
-        	,seq_replyboard_no.currval, 1, 0)
-	]]>
-</insert> 
+	<insert id="insert" parameterType="com.mysite.vo.ReplyboardVo">
+	<![CDATA[
+		insert into replyboard
+		values(seq_replyboard_no.nextval
+	        	,#{title}, #{content},#{hit}, sysdate,#{userNo}
+	        	,seq_replyboard_no.currval, 1, 0)
+		]]>
+	</insert> 
 
-<select id="selectRead" resultType="com.mysite.vo.ReplyboardVo">
+	<select id="selectRead" resultType="com.mysite.vo.ReplyboardVo">
 	<![CDATA[
 		select no,title,content,user_no userNo, group_no groupNo, order_no orderNo, depth
 		from replyboard 
@@ -29,7 +29,7 @@
 	]]>
 	</select>
 
-<select id="updateHit" parameterType="int" >
+	<select id="updateHit" parameterType="int" >
 	<![CDATA[
 		update replyboard
 		set hit=hit+1
@@ -37,23 +37,46 @@
 	]]>
 	</select>
 
-<select id="update" parameterType="Map" >
+	<select id="update" parameterType="Map" >
 	<![CDATA[
 		update replyboard
-		set orderNo=orderNo+1
-		where groupNo = #{groupNo}
-		and orderNo > #{orderNo}
+		set order_no=order_no+1
+		where group_no = #{groupNo}
+		and order_no > #{orderNo}
 	]]>
 	</select>
 
-<insert id="insert2" parameterType="com.mysite.vo.ReplyboardVo">
-<![CDATA[
-	insert into replyboard
-	values(seq_replyboard_no.nextval
-        	,#{title}, #{content},0, sysdate,#{userNo}
-        	,#{groupNo},#{orderNo},#{depth})
+	<insert id="insert2" parameterType="com.mysite.vo.ReplyboardVo">
+	<![CDATA[
+		insert into replyboard
+		values(seq_replyboard_no.nextval
+	        	,#{title}, #{content},0, sysdate,#{userNo}
+	        	,#{groupNo},#{orderNo},#{depth})
+		]]>
+	</insert> 
 
+	<delete id="delete" parameterType="com.mysite.vo.ReplyboardVo">
+	<![CDATA[
+		delete from replyboard
+		where no=#{no}
+		and user_no=#{userNo}
 	]]>
-</insert> 
+	</delete>
+	
+	<select id="selectBoard"  parameterType="int" resultType="com.mysite.vo.ReplyboardVo">
+	<![CDATA[
+		select no,title,content,user_no userNo 
+		from  replyboard 
+		where no=#{no}
+	]]>
+	</select>
+	
+	<select id="update2" parameterType="com.mysite.vo.ReplyboardVo">
+	<![CDATA[
+		update replyboard 
+		set title=#{title},content=#{content}
+		where no=#{no}
+	]]>
+	</select>
 
 </mapper>

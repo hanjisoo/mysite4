@@ -27,22 +27,22 @@
 					</tr>
 					<tr>
 						<td class="label">제목</td>
-						<td>${replyboardVo.title }</td>
+						<td>${boardVo.title }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
 						<td>
 							<div class="view-content">
-								${fn:replace(replyVo.content,n,'<br/>')}<br>
+								${fn:replace(boardVo.content,n,'<br/>')}<br>
 							</div>
 						</td>
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/reply/list">글목록</a>
+					<a href="${pageContext.request.contextPath }/board/list">글목록</a>
 					
-					<c:if test="${authUser.no==replyVo.userNo }">
-					<a href="${pageContext.request.contextPath }/reply/modifyform?no=${replyVo.no }">글수정</a>
+					<c:if test="${authUser.no==boardVo.userNo }">
+					<a href="${pageContext.request.contextPath }/board/modifyform?no=${boardVo.no }">글수정</a>
 					</c:if>
 				</div>
 			</div>

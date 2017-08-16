@@ -32,11 +32,12 @@
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content">${replyVo.content}</textarea>
+								<textarea id="content" name="content"></textarea>
 																
 							</td>
 						</tr>
 					</table>
+					 <%-- <input type="text" name ="no" value="${replyVo.no}"> --%> 
 					<input type="text" name ="userNo" value="${authUser.no}"> 
 					<input type="hidden" name ="groupNo" value="${replyVo.groupNo}"> 
 					<input type="hidden" name ="orderNo" value="${replyVo.orderNo}"> 

@@ -37,7 +37,6 @@ public class BoardDao {
 	
 	public BoardVo getBoard(int no) {
 		return sqlSession.selectOne("board.selectBoard", no);
-		
 	}
 	
 	public int update(BoardVo boardVo) {

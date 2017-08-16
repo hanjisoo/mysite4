@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.service.replyboardService;
@@ -73,7 +74,33 @@ public class ReplyboardController {
 		System.out.println(authUser.toString());
 		System.out.println(replyVo.toString());
 		replyService.reply(replyVo);
+		System.out.println(replyVo.toString());
 		return "redirect:/reply/list";
 	}
 	
+	@RequestMapping(value="/reply/delete", method=RequestMethod.GET)
+	public String delete(HttpSession session, @ModelAttribute ReplyboardVo vo) {
+		UserVo authUser=(UserVo)session.getAttribute("authUser");
+		int no=authUser.getNo();
+		vo.setUserNo(no);
+		
+		replyService.delete(vo);
+		return "redirect:/reply/list";
+	}
+	
+	@RequestMapping("/reply/modifyform")
+	public String modifyform(@RequestParam int no, Model model) {
+		ReplyboardVo replyVo=replyService.getBoard(no);
+		System.out.println(replyVo);
+		model.addAttribute("replyVo", replyVo);
+		
+		return"reply/modifyform";
+	}
+	
+	@RequestMapping("/reply/modify")
+	public String modify(@ModelAttribute ReplyboardVo replyVo){
+		System.out.println(replyVo);
+		replyService.update2(replyVo);
+		return "redirect:/reply/list";
+	}
 }

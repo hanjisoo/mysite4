@@ -25,18 +25,18 @@
 						</tr>
 						<tr>
 							<td class="label">제목</td>
-							<td><input type="text" name="title" value=${boardVo.title }></td>
+							<td><input type="text" name="title" value=${replyVo.title }></td>
 						</tr>
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content" >${boardVo.content }</textarea>
+								<textarea id="content" name="content" >${replyVo.content }</textarea>
 							</td>
 						</tr>
 					</table>
-					<input type="text" name ="no" value="${boardVo.no}"> 
+					<input type="text" name ="no" value="${replyVo.no}"> 
 					<div class="bottom">
-						<a href="${pageContext.request.contextPath }/board/list">취소</a>
+						<a href="${pageContext.request.contextPath }/reply/list">취소</a>
 						<input type="submit" value="수정">
 					</div>
 				</form>				

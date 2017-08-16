@@ -34,20 +34,29 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>			
-					
 					<c:forEach items="${list}" var="vo">
-						
 					<tr>
 						<td>${vo.no }</td>
+
+						<td style="text-align:left">
+							<a href="read/${vo.no }">
+								<c:if test="${vo.depth ne null and vo.depth ne 0}">
+								<c:forEach begin="1"  end="${vo.depth}" >
+									&nbsp;&nbsp;
+								</c:forEach>
+									ㄴ
+								</c:if>
+								${vo.title }.
+							</a>
+						</td>
 						
-						<td><a href="read/${vo.no }">${vo.title }.</a></td>
 						<td>${vo.name }</td>
 						<td>${vo.hit }</td>
-						<td>${vo.regDate } , ${authUser.no},${vo.userNo}</td>
+						<td>${vo.regDate }</td>
 						
 						<td>
 							<c:if test="${authUser.no==vo.userNo }">
-								<a href="${pageContext.request.contextPath }/reply/delete?no=${board.no}" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath }/reply/delete?no=${vo.no}" class="del">삭제</a>
 							</c:if>
 						</td>
 								<!-- 맞으면 해주고 아니면 건너띄니깐 안써줌 -->

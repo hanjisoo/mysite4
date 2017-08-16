@@ -47,7 +47,7 @@
 						
 						<td>
 							<c:if test="${authUser.no==vo.userNo }">
-								<a href="${pageContext.request.contextPath }/board/delete?no=${board.no}" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath }/board/delete?no=${vo.no}" class="del">삭제</a>
 							</c:if>
 						</td>
 								<!-- 맞으면 해주고 아니면 건너띄니깐 안써줌 -->

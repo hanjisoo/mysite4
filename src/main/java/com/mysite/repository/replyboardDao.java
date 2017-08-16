@@ -43,10 +43,22 @@ public class replyboardDao {
 	public int reply(ReplyboardVo replyVo) {
 		int orderNo=replyVo.getOrderNo();
 		int depth=replyVo.getDepth();
-		++depth;
 		++orderNo;
+		++depth;
 		replyVo.setOrderNo(orderNo);
 		replyVo.setDepth(depth);
 		return sqlSession.insert("reply.insert2", replyVo);
+	}
+	
+	public int delete(ReplyboardVo vo) {
+		return sqlSession.delete("reply.delete", vo);
+	}
+	
+	public ReplyboardVo getBoard(int no) {
+		return sqlSession.selectOne("reply.selectBoard", no);
+	}
+	
+	public int update2(ReplyboardVo replyVo) {
+		return sqlSession.update("reply.update2",replyVo);
 	}
 }

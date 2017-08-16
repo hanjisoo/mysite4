@@ -39,4 +39,16 @@ public class replyboardService {
 		//저장
 		return replyDao.reply(replyVo);
 	}
+	
+	public int delete(ReplyboardVo vo) {
+		return replyDao.delete(vo);
+	}
+	
+	public ReplyboardVo getBoard(int no) {
+		return replyDao.getBoard(no);
+	}
+	
+	public int update2(ReplyboardVo replyVo) {
+		return replyDao.update2(replyVo);
+	}
 }

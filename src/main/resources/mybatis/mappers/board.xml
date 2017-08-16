@@ -37,9 +37,11 @@
 	</insert>
 	
 	<delete id="delete" parameterType="com.mysite.vo.BoardVo">
+		<![CDATA[
 		delete from Board
 		where no=#{no}
 		and user_no=#{userNo}
+		]]>
 	</delete>
 	
 	<select id="selectBoard"  parameterType="int" resultType="com.mysite.vo.BoardVo">
