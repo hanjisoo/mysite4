@@ -35,12 +35,21 @@ public class replyboardService {
 	public int reply(ReplyboardVo replyVo) {
 		//no하나 올리기
 		replyDao.update(replyVo.getGroupNo(),replyVo.getOrderNo());
-			
+		/*replyDao.update(replyVo);*/
 		//저장
 		return replyDao.reply(replyVo);
 	}
 	
 	public int delete(ReplyboardVo vo) {
+		//가져와
+		/*int groupNo=vo.getGroupNo();
+		int orderNo=vo.getOrderNo();
+		int depth=vo.getDepth();
+		//반복문
+		for()
+		while(groupNo=vo.groupNo) {
+			depth<
+		}*/
 		return replyDao.delete(vo);
 	}
 	

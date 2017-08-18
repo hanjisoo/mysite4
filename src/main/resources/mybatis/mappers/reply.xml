@@ -59,6 +59,7 @@
 	<![CDATA[
 		delete from replyboard
 		where no=#{no}
+		
 		and user_no=#{userNo}
 	]]>
 	</delete>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%-- <%@ page import="java.util.List" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +57,11 @@
 						
 						<td>
 							<c:if test="${authUser.no==vo.userNo }">
-								<a href="${pageContext.request.contextPath }/reply/delete?no=${vo.no}" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath }/reply/delete?no=${vo.no}" class="del">
+								<%-- <c:if test=${vo.depth ne null and vo.depth ne 0 }>
+								<script type="text/javascript">alert("이거슨 alert 메세지!!");</script>
+								</c:if> --%>
+								삭제</a>
 							</c:if>
 						</td>
 								<!-- 맞으면 해주고 아니면 건너띄니깐 안써줌 -->

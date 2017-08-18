@@ -39,6 +39,9 @@ public class replyboardDao {
 		userMap.put("orderNo",orderNo);
 		return sqlSession.update("reply.update", userMap);
 	}
+	/*public int update(ReplyboardVo replyVo) {
+		return sqlSession.update("reply.update", replyVo);
+	}*/
 	
 	public int reply(ReplyboardVo replyVo) {
 		int orderNo=replyVo.getOrderNo();
