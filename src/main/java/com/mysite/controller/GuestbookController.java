@@ -23,6 +23,8 @@ public class GuestbookController {
 	public String listAjax() {
 		return "book/list-ajax";
 	}
+	
+	
 	@RequestMapping("/book/list")
 	public String list(Model model) {//데이터받으려면 모델필요!!!
 		List<GuestbookVo> list1= guestbookService.list();

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysite.service.UserService;
 import com.mysite.vo.UserVo;
@@ -20,6 +21,17 @@ public class UserController {
 	@Autowired	//서비스랑 연결
 	private UserService userService;
 
+	@ResponseBody
+	@RequestMapping(value="/check",method=RequestMethod.POST)
+	public boolean check(@RequestParam("email")String email) {
+		System.out.println(email);
+		boolean result = userService.check(email);
+		return result;
+		
+	}
+	
+	
+	
 	@RequestMapping(value="/joinform", method=RequestMethod.GET)//주소갖고 있음 웹에서 쓰겠다.
 	public String joinform() {
 		return "user/joinform";//spring-servlet에서 관리

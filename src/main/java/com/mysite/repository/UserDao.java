@@ -15,6 +15,11 @@ public class UserDao {
 	@Autowired
 	private SqlSession sqlSession;	//어플리케이션.xml에서 만들어주고 있음
 	
+	public String check(String email) {
+		
+		return email=sqlSession.selectOne("user.emailcheck",email);
+		
+	}
 	
 	public int insert(UserVo userVo) {
 		return sqlSession.insert("user.insert",userVo);

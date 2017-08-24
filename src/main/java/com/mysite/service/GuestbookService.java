@@ -26,4 +26,14 @@ public class GuestbookService {
 	public int delete(GuestbookVo vo) {
 		return guestbookDao.delete(vo);
 	}
+	
+	
+	public GuestbookVo add2(GuestbookVo guestbookVo) {
+		int no=guestbookDao.insertNo(guestbookVo);
+		
+		/*guestbookVo=guestbookDao.selectByNo(guestbookVo.getNo());*/
+		guestbookVo=guestbookDao.selectByNo(no);
+		return guestbookVo;
+	
+	}
 }

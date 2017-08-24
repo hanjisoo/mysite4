@@ -12,7 +12,14 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
-	
+	public boolean check(String email) {
+		String email2= userDao.check(email);
+		if(email2==null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	public int join(UserVo userVo) {
 		return userDao.insert(userVo);

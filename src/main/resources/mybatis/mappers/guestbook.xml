@@ -46,4 +46,21 @@
 	</select> 
 
 
+	<insert id="insertNo" parameterType="com.mysite.vo.GuestbookVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_guestbook1_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into guestbook1 
+			values(#{no},#{name},#{password},#{content},sysdate)
+		]]>
+	</insert>
+	
+	<select id="selectByNo" parameterType="int" resultType="com.mysite.vo.GuestbookVo">
+		<![CDATA[
+			select no,name,password,content,reg_date regDate
+			from guestbook1
+			where no=#{no}
+		]]>
+	</select>
 </mapper>

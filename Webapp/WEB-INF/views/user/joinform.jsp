@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 <title>Mysite</title>
 </head>
 <body>
@@ -26,8 +27,8 @@
 	
 						<label class="block-label" for="email">이메일</label>
 						<input id="email" name="email" type="text" value="" />
-						<input type="button" value="id 중복체크">
-						
+						<input id="emailC" type="button" value="id 중복체크"> 
+						<p id="check"></p>
 						<label class="block-label">패스워드</label>
 						<input name="password" type="password" value="" />
 						
@@ -55,5 +56,40 @@
 		
 	</div><!-- /container -->
 </body>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//중복확인 버튼
+		$("#emailC").on("click",function(){
+			console.log("중복버튼클릭");
+			var email=$("#email").val();
+				
+				$.ajax({
+					
+					url : "${pageContext.request.contextPath }/user/check",
+					type : "post",
+					data : {email:email} ,
+					dataType : "json", 
+					success : function(result){
+						console.log(result)
+						if(result == true){ 
+							 $("#check").html("<strong>사용가능한 이메일입니다.</strong>");
+						} else{ 
+							 $("#check").html("<strong>사용중인 이메일입니다.</strong>");  
+						} 
+					},
+					error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+					}		
+				
+				
+				});
+			});
+			
+		});
+				
+						
+</script>
+
 </html>		
 		

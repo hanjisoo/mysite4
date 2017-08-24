@@ -3,11 +3,18 @@
 
 <mapper namespace="user">
 	
+	<select id="emailcheck" parameterType="String" resultType="String">
+		<![CDATA[
+			select email
+			from users
+			where email=#{email}
+		]]>
+	</select>
+	
 	<insert id="insert" parameterType="com.mysite.vo.UserVo">
 		<![CDATA[
 			insert into users
-			values(seq_users_no.nextval,
-					#{name},#{email},#{password},#{gender})
+			values(seq_users_no.nextval,#{name},#{email},#{password},#{gender})
 		]]>
 	</insert>
 	
